@@ -108,13 +108,16 @@ export default function Analysis() {
 
       {/* Pie charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 overflow-hidden">
           <h3 className="text-sm font-semibold text-gray-700 mb-3">支出分类占比</h3>
           {expensePie.length > 0 ? (
             <>
               <ResponsiveContainer width="100%" height={260}>
                 <PieChart>
-                  <Pie data={expensePie} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} innerRadius={45} label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}>
+                  <Pie data={expensePie} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} innerRadius={45} label={({ name, percent }) => {
+                    const n = (name ?? '').replace(/^[^\s]+\s/, '');
+                    return `${n.length > 4 ? n.slice(0,4)+'…' : n} ${((percent ?? 0) * 100).toFixed(0)}%`;
+                  }}>
                     {expensePie.map((_, i) => (
                       <Cell key={i} fill={COLORS[i % COLORS.length]} />
                     ))}
@@ -129,13 +132,16 @@ export default function Analysis() {
           )}
         </div>
 
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 overflow-hidden">
           <h3 className="text-sm font-semibold text-gray-700 mb-3">收入分类占比</h3>
           {incomePie.length > 0 ? (
             <>
               <ResponsiveContainer width="100%" height={260}>
                 <PieChart>
-                  <Pie data={incomePie} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} innerRadius={45} label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}>
+                  <Pie data={incomePie} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} innerRadius={45} label={({ name, percent }) => {
+                    const n = (name ?? '').replace(/^[^\s]+\s/, '');
+                    return `${n.length > 4 ? n.slice(0,4)+'…' : n} ${((percent ?? 0) * 100).toFixed(0)}%`;
+                  }}>
                     {incomePie.map((_, i) => (
                       <Cell key={i} fill={COLORS[i % COLORS.length]} />
                     ))}

@@ -71,8 +71,9 @@ export default function TransactionForm({ open, onClose, edit }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/30 backdrop-blur-sm" onClick={onClose}>
-      <div className="bg-white rounded-t-3xl md:rounded-2xl p-5 md:p-6 w-full max-w-md shadow-2xl max-h-[85vh] overflow-auto safe-bottom" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
+      <div className="bg-white rounded-t-3xl md:rounded-2xl p-5 md:p-6 w-full max-w-md shadow-2xl max-h-[90vh] overflow-y-auto overscroll-contain" onClick={(e) => e.stopPropagation()}
+        style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-lg font-bold text-gray-800">{edit ? '编辑记录' : '记一笔'}</h3>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl p-1">✕</button>

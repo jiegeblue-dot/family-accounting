@@ -50,8 +50,8 @@ export default function Layout() {
       </aside>
 
       {/* Main */}
-      <main className="flex-1 overflow-auto pb-24 md:pb-0">
-        <div className="max-w-5xl mx-auto p-3 md:p-6">
+      <main className="flex-1 overflow-y-auto overflow-x-hidden pb-24 md:pb-0">
+        <div className="max-w-5xl mx-auto p-3 md:p-6 min-w-0">
           {renderPage(page)}
         </div>
       </main>

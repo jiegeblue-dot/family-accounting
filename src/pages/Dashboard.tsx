@@ -53,7 +53,7 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Expense Pie */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-100 shadow-sm">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-100 shadow-sm overflow-hidden">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-bold text-gray-700">支出分布</h3>
             <select value={pieMonth} onChange={(e) => setPieMonth(e.target.value)}
@@ -66,8 +66,11 @@ export default function Dashboard() {
           {pieData.length > 0 ? (
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
-                <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={90} innerRadius={45}
-                  label={({ name, value }) => `${(name ?? '').replace(/^[^\s]+\s/, '')} ¥${Number(value).toFixed(0)}`}>
+                <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={75} innerRadius={40}
+                  label={({ name }) => {
+                    const short = (name ?? '').replace(/^[^\s]+\s/, '');
+                    return short.length > 4 ? short.slice(0, 4) + '…' : short;
+                  }}>
                   {pieData.map((_, i) => (<Cell key={i} fill={COLORS[i % COLORS.length]} />))}
                 </Pie>
                 <Tooltip formatter={(v) => `¥${Number(v).toFixed(2)}`} />
