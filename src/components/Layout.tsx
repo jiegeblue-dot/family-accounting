@@ -33,7 +33,7 @@ export default function Layout() {
             <button
               key={item.key}
               onClick={() => setPage(item.key)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all ${
                 page === item.key
                   ? 'bg-white/20 text-white shadow-lg shadow-black/10'
                   : 'text-indigo-200 hover:bg-white/10 hover:text-white'
@@ -50,23 +50,23 @@ export default function Layout() {
       </aside>
 
       {/* Main */}
-      <main className="flex-1 overflow-auto pb-20 md:pb-0">
-        <div className="max-w-5xl mx-auto p-4 md:p-6">
+      <main className="flex-1 overflow-auto pb-24 md:pb-0">
+        <div className="max-w-5xl mx-auto p-3 md:p-6">
           {renderPage(page)}
         </div>
       </main>
 
       {/* Mobile bottom nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-t border-gray-200/50 flex shadow-lg">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200/50 flex shadow-xl safe-bottom">
         {navItems.map((item) => (
           <button
             key={item.key}
             onClick={() => setPage(item.key)}
-            className={`flex-1 flex flex-col items-center py-2 text-[10px] font-medium transition-colors ${
+            className={`flex-1 flex flex-col items-center pt-2 pb-1 text-[11px] font-medium transition-colors ${
               page === item.key ? 'text-indigo-600' : 'text-gray-400'
             }`}
           >
-            <span className="text-lg">{item.icon}</span>
+            <span className="text-xl mb-0.5">{item.icon}</span>
             {item.label}
           </button>
         ))}

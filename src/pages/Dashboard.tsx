@@ -138,7 +138,7 @@ function BudgetProgress({ month, onMonthChange, monthOptions }: { month: string;
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-100 shadow-sm">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-bold text-gray-700">本月预算进度</h3>
+        <h3 className="text-sm font-bold text-gray-700">预算进度</h3>
         <select value={month} onChange={(e) => onMonthChange(e.target.value)}
           className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-gray-50 outline-none focus:border-indigo-300">
           {monthOptions.map((m) => (<option key={m.value} value={m.value}>{m.label}</option>))}
@@ -148,18 +148,21 @@ function BudgetProgress({ month, onMonthChange, monthOptions }: { month: string;
         {items.map((item) => (
           <div key={item.categoryId}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs font-medium text-gray-600">
+              <span className="text-[13px] font-medium text-gray-700">
                 {item.cat?.icon} {item.cat?.name}
               </span>
-              <span className={`text-xs font-semibold ${item.pct > 100 ? 'text-rose-500' : item.pct > 80 ? 'text-amber-500' : 'text-emerald-500'}`}>
-                ¥{item.spent.toLocaleString()} / ¥{item.amount.toLocaleString()} ({item.pct.toFixed(0)}%)
+              <span className={`text-[11px] md:text-xs font-semibold ${item.pct > 100 ? 'text-rose-500' : item.pct > 80 ? 'text-amber-500' : 'text-emerald-500'}`}>
+                {item.pct.toFixed(0)}%
               </span>
             </div>
-            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
               <div className={`h-full rounded-full transition-all ${
                 item.pct > 100 ? 'bg-gradient-to-r from-rose-400 to-pink-500' : item.pct > 80 ? 'bg-gradient-to-r from-amber-400 to-orange-500' : 'bg-gradient-to-r from-emerald-400 to-teal-500'
               }`} style={{ width: `${Math.min(item.pct, 100)}%` }} />
             </div>
+            <p className="text-[11px] text-gray-400 mt-0.5">
+              ¥{item.spent.toLocaleString()} / ¥{item.amount.toLocaleString()}
+            </p>
           </div>
         ))}
       </div>

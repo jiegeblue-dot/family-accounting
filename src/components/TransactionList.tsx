@@ -35,27 +35,27 @@ export default function TransactionList({ transactions, onEdit, compact }: Props
           return (
             <div key={t.id}
               onClick={() => onEdit(t)}
-              className="group bg-white/80 backdrop-blur-sm rounded-2xl p-3.5 flex items-center gap-3 border border-gray-100 hover:border-indigo-200 hover:shadow-md transition-all cursor-pointer">
+              className="group bg-white/80 backdrop-blur-sm rounded-2xl p-3 md:p-3.5 flex items-center gap-3 border border-gray-100 hover:border-indigo-200 hover:shadow-md transition-all cursor-pointer active:bg-gray-50">
               <span className="text-2xl shrink-0">{cat.icon}</span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-sm font-semibold text-gray-800 truncate">{cat.name}</span>
+                  <span className="text-[13px] md:text-sm font-semibold text-gray-800 truncate">{cat.name}</span>
                   {getPayer(t.payerId) && (
-                    <span className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full shrink-0">
+                    <span className="text-[10px] md:text-[11px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full shrink-0">
                       {getPayer(t.payerId)}
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-gray-400">
+                <p className="text-[11px] md:text-xs text-gray-400">
                   {t.date}
                   {t.note && <span className="ml-1 text-gray-500">· {t.note}</span>}
                 </p>
               </div>
-              <span className={`text-sm font-bold whitespace-nowrap ${isIncome ? 'text-emerald-500' : 'text-rose-500'}`}>
+              <span className={`text-sm md:text-sm font-bold whitespace-nowrap ${isIncome ? 'text-emerald-500' : 'text-rose-500'}`}>
                 {isIncome ? '+' : '-'}¥{t.amount.toLocaleString('zh-CN', { minimumFractionDigits: 2 })}
               </span>
               <button onClick={(e) => { e.stopPropagation(); setDeleteId(t.id); }}
-                className="opacity-0 group-hover:opacity-100 text-gray-300 hover:text-red-400 transition-all p-1 shrink-0">
+                className="shrink-0 text-gray-300 hover:text-red-400 transition-all p-1.5 text-base">
                 🗑️
               </button>
             </div>
